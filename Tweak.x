@@ -133,6 +133,15 @@ static void loadPrefs() {
 
 }
 
+static id observer;
+
+void removeObserver() {
+	if (observer) {
+		[[NSNotificationCenter defaultCenter] removeObserver:observer];
+		observer = nil;
+	}
+}
+
 %ctor {
 
 	// DEVELOPER'S NOTE: Hooking IGFeedItem did not work as the like would "half-happen" by then and crash Instagram
@@ -140,18 +149,17 @@ static void loadPrefs() {
 	loadPrefs(); // Load preferences into variables
 	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)loadPrefs, CFSTR("com.yulkytulky.instanotastalker/saved"), NULL, CFNotificationSuspensionBehaviorCoalesce); // Listen for preference changes
 
-	if (enabled) { // Thanks, Dimitar Nestorov
-        dispatch_async(dispatch_queue_create("InstaNotAStalker.wait", 0), ^{
-            dispatch_queue_t signal = dispatch_queue_create("InstaNotAStalker.signal", 0);
-            dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-            while (!NSClassFromString(@"IGFeedItemPhotoCell") || !NSClassFromString(@"IGFeedItemVideoCell") || !NSClassFromString(@"IGFeedItemPageCell") || !NSClassFromString(@"IGFeedItemUFICell")) {
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), signal, ^{
-                    dispatch_semaphore_signal(semaphore);
-                });
-                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-            }
-            %init;
-        });
-    }
+	if (enabled) {
+		NSBundle *bundle = [NSBundle bundleWithPath:[NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] bundlePath], @"/Frameworks/InstagramAppCoreFramework.framework"]];
+		observer = [[NSNotificationCenter defaultCenter] addObserverForName:NSBundleDidLoadNotification object:bundle queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
+			%init;
+			removeObserver();
+		}];
 
+		[bundle load];
+	}
+}
+
+%dtor {
+	removeObserver();
 }
