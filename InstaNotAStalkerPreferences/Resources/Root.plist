@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+
+		<dict>
+            <key>cell</key>
+            <string>PSGroupCell</string>
+            <key>headerCellClass</key>
+            <string>NASRootHeaderView</string>
+        </dict>
+
+		<dict>
+	  		<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Enable Tweak</string>
+			<key>footerText</key>
+			<string>Kill Instagram to enable/disable</string>
+	  	</dict>
+	  	<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>cellClass</key>
+			<string>NASSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.yulkytulky.instanotastalker</string>
+			<key>key</key>
+			<string>enabled</string>
+			<key>label</key>
+			<string>Enabled</string>
+			<key>icon</key>
+			<string>icon.png</string>
+			<key>id</key>
+			<string>101</string>
+			<key>PostNotification</key>
+			<string>com.yulkytulky.instanotastalker/saved</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>cellClass</key>
+			<string>NASKillButtonCell</string>
+			<key>action</key>
+			<string>killInsta</string>
+			<key>icon</key>
+			<string>instagram.png</string>
+			<key>label</key>
+			<string>Kill Instagram</string>
+			<key>id</key>
+			<string>102</string>
+		</dict>
+
+		<dict>
+	  		<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Mode</string>
+			<key>footerText</key>
+			<string>Display alert when double-tapping post, pressing heart icon, and/or pressing follow button</string>
+	  	</dict>
+	  	<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>cellClass</key>
+			<string>NASSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.yulkytulky.instanotastalker</string>
+			<key>key</key>
+			<string>doubleTapModeEnabled</string>
+			<key>label</key>
+			<string>Enable Double Tap Mode</string>
+			<key>PostNotification</key>
+			<string>com.yulkytulky.instanotastalker/saved</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>cellClass</key>
+			<string>NASSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.yulkytulky.instanotastalker</string>
+			<key>key</key>
+			<string>heartTapModeEnabled</string>
+			<key>label</key>
+			<string>Enable Heart Tap Mode</string>
+			<key>PostNotification</key>
+			<string>com.yulkytulky.instanotastalker/saved</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>cellClass</key>
+			<string>NASSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.yulkytulky.instanotastalker</string>
+			<key>key</key>
+			<string>followModeEnabled</string>
+			<key>label</key>
+			<string>Enable Follow Mode</string>
+			<key>PostNotification</key>
+			<string>com.yulkytulky.instanotastalker/saved</string>
+		</dict>
+
+		<dict>
+	  		<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Style</string>
+			<key>footerText</key>
+			<string>Alert style</string>
+	  	</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSegmentCell</string>
+			<key>default</key>
+			<string>0</string>
+			<key>defaults</key>
+			<string>com.yulkytulky.instanotastalker</string>
+			<key>key</key>
+			<string>alertStyle</string>
+			<key>validValues</key>
+			<array>
+				<string>1</string>
+				<string>0</string>
+			</array>
+			<key>validTitles</key>
+			<array>
+				<string>Alert</string>
+				<string>Action Sheet</string>
+			</array>
+			<key>PostNotification</key>
+			<string>com.yulkytulky.instanotastalker/saved</string>
+		</dict>
+
+		<dict>
+	  		<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Time</string>
+			<key>footerText</key>
+			<string>Minimum post age to display alert</string>
+	  	</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>cellClass</key>
+			<string>NASSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.yulkytulky.instanotastalker</string>
+			<key>key</key>
+			<string>alwaysAlert</string>
+			<key>label</key>
+			<string>Always Confirm Like</string>
+			<key>id</key>
+			<string>1</string>
+			<key>PostNotification</key>
+			<string>com.yulkytulky.instanotastalker/saved</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSegmentCell</string>
+			<key>default</key>
+			<string>604800</string>
+			<key>defaults</key>
+			<string>com.yulkytulky.instanotastalker</string>
+			<key>key</key>
+			<string>minimumTakenAtTime</string>
+			<key>validValues</key>
+			<array>
+				<string>86400</string>
+				<string>604800</string>
+				<string>2419200</string>
+				<string>31536000</string>
+			</array>
+			<key>validTitles</key>
+			<array>
+				<string>Day</string>
+				<string>Week</string>
+				<string>Month</string>
+				<string>Year</string>
+			</array>
+			<key>id</key>
+			<string>2</string>
+			<key>PostNotification</key>
+			<string>com.yulkytulky.instanotastalker/saved</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSEditTextCell</string>
+			<key>cellClass</key>
+			<string>NASDynamicTextEditCell</string>
+			<key>default</key>
+			<string>1</string>
+			<key>defaults</key>
+			<string>com.yulkytulky.instanotastalker</string>
+			<key>key</key>
+			<string>timeMultiplier</string>
+			<key>isNumeric</key>
+			<true/>
+			<key>label</key>
+			<string></string> <!--Filled dynamically-->
+			<key>id</key>
+			<string>3</string>
+			<key>PostNotification</key>
+			<string>com.yulkytulky.instanotastalker/saved</string>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>Developed by YulkyTulky | 2020</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>action</key>
+			<string>github</string>
+			<key>icon</key>
+			<string>github.png</string>
+			<key>label</key>
+			<string>Source Code  ❤️</string>
+		</dict>
+
+	</array>
+	<key>title</key>
+	<string></string>
+</dict>
+</plist>
