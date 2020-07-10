@@ -175,7 +175,6 @@ void removeObserver() {
 		[[NSNotificationCenter defaultCenter] removeObserver:observer];
 		observer = nil;
 	}
-
 }
 
 %ctor {

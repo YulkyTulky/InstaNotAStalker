@@ -1,7 +1,7 @@
 Package: com.yulkytulky.instanotastalker
 Name: InstaNotAStalker
 Depends: mobilesubstrate
-Version: 1.0
+Version: 1.1
 Architecture: iphoneos-arm
 Description: Confirm Instagram likes with a slew of preferences!
 Maintainer: YulkyTulky

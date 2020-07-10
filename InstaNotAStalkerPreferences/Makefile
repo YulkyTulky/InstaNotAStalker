@@ -4,7 +4,11 @@ include $(THEOS)/makefiles/common.mk
 
 BUNDLE_NAME = InstaNotAStalkerPreferences
 
+<<<<<<< HEAD
 InstaNotAStalkerPreferences_FILES = NASRootListController.m NASSwitchCell.m NASRootHeaderView.m NASKillButtonCell.m NASDynamicTextEditCell.m
+=======
+InstaNotAStalkerPreferences_FILES = NASRootListController.m NASSwitchCell.m NASRootHeaderView.m NASKillButtonCell.m
+>>>>>>> 8f302c8d28aaac2ebd820063e0828c4563b51983
 InstaNotAStalkerPreferences_INSTALL_PATH = /Library/PreferenceBundles
 InstaNotAStalkerPreferences_FRAMEWORKS = UIKit
 InstaNotAStalkerPreferences_PRIVATE_FRAMEWORKS = Preferences
