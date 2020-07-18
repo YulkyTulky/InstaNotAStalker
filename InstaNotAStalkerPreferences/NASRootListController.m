@@ -1,8 +1,5 @@
 #include "NASRootListController.h"
-<<<<<<< HEAD
 #import "NASDynamicTextEditCell.h"
-=======
->>>>>>> 8f302c8d28aaac2ebd820063e0828c4563b51983
 
 @implementation NASRootListController
 
@@ -12,11 +9,7 @@
 		_specifiers = [self loadSpecifiersFromPlistName:@"Root" target:self];
 	}
 
-<<<<<<< HEAD
 	NSArray *chosenIDs = @[@"2", @"3", @"102"];
-=======
-	NSArray *chosenIDs = @[@"2", @"102"];
->>>>>>> 8f302c8d28aaac2ebd820063e0828c4563b51983
 	[self setSavedSpecifiers:(![self savedSpecifiers]) ? [[NSMutableDictionary alloc] init] : [self savedSpecifiers]];
 	for (PSSpecifier *specifier in _specifiers) {
 		if ([chosenIDs containsObject:[specifier propertyForKey:@"id"]]) {
@@ -53,15 +46,10 @@
 	if ([key isEqualToString:@"alwaysAlert"]) {
 		if (![value boolValue]) {
 			[self insertContiguousSpecifiers:@[[self savedSpecifiers][@"2"]] afterSpecifierID:@"1" animated:YES];
-<<<<<<< HEAD
 			[self insertContiguousSpecifiers:@[[self savedSpecifiers][@"3"]] afterSpecifierID:@"2" animated:YES];
 		} else if ([self containsSpecifier:[self savedSpecifiers][@"2"]]) {
 			[self removeContiguousSpecifiers:@[[self savedSpecifiers][@"2"]] animated:YES];
 			[self removeContiguousSpecifiers:@[[self savedSpecifiers][@"3"]] animated:YES];
-=======
-		} else if ([self containsSpecifier:[self savedSpecifiers][@"2"]]) {
-			[self removeContiguousSpecifiers:@[[self savedSpecifiers][@"2"]] animated:YES];
->>>>>>> 8f302c8d28aaac2ebd820063e0828c4563b51983
 		}
 	} else if ([key isEqualToString:@"enabled"]) {
 		if ([value boolValue] == [self enabledSwitchStateWhenLastReset]) {
@@ -69,7 +57,6 @@
 		} else {
 			[self insertContiguousSpecifiers:@[[self savedSpecifiers][@"102"]] afterSpecifierID:@"101" animated:YES];
 		}
-<<<<<<< HEAD
 	} else if ([key isEqualToString:@"minimumTakenAtTime"]) {
 		NSMutableDictionary *cells = [self valueForKey:@"_cells"];
 		for (id editCellIndex in cells) {
@@ -78,8 +65,6 @@
 				[editCell dynamicallyUpdateLabel];
 			}
 		}
-=======
->>>>>>> 8f302c8d28aaac2ebd820063e0828c4563b51983
 	}
 
 }
@@ -91,15 +76,10 @@
 	NSDictionary *preferences = [NSDictionary dictionaryWithContentsOfFile:@"/var/mobile/Library/Preferences/com.yulkytulky.instanotastalker.plist"];
   	if ([preferences[@"alwaysAlert"] boolValue]) {
 		[self removeContiguousSpecifiers:@[[self savedSpecifiers][@"2"]] animated:NO];
-<<<<<<< HEAD
 		[self removeContiguousSpecifiers:@[[self savedSpecifiers][@"3"]] animated:NO];
 	} else if (![self containsSpecifier:[self savedSpecifiers][@"2"]]) {
 		[self insertContiguousSpecifiers:@[[self savedSpecifiers][@"2"]] afterSpecifierID:@"1" animated:NO];
 		[self insertContiguousSpecifiers:@[[self savedSpecifiers][@"3"]] afterSpecifierID:@"2" animated:NO];
-=======
-	} else if (![self containsSpecifier:[self savedSpecifiers][@"2"]]) {
-		[self insertContiguousSpecifiers:@[[self savedSpecifiers][@"2"]] afterSpecifierID:@"1" animated:NO];
->>>>>>> 8f302c8d28aaac2ebd820063e0828c4563b51983
 	}
 	[self removeContiguousSpecifiers:@[[self savedSpecifiers][@"102"]] animated:NO];
 
@@ -114,15 +94,10 @@
 	NSDictionary *preferences = [NSDictionary dictionaryWithContentsOfFile:@"/var/mobile/Library/Preferences/com.yulkytulky.instanotastalker.plist"];
   	if ([preferences[@"alwaysAlert"] boolValue]) {
 		[self removeContiguousSpecifiers:@[[self savedSpecifiers][@"2"]] animated:NO];
-<<<<<<< HEAD
 		[self removeContiguousSpecifiers:@[[self savedSpecifiers][@"3"]] animated:NO];
 	} else if (![self containsSpecifier:[self savedSpecifiers][@"2"]]) {
 		[self insertContiguousSpecifiers:@[[self savedSpecifiers][@"2"]] afterSpecifierID:@"1" animated:NO];
 		[self insertContiguousSpecifiers:@[[self savedSpecifiers][@"3"]] afterSpecifierID:@"2" animated:NO];
-=======
-	} else if (![self containsSpecifier:[self savedSpecifiers][@"2"]]) {
-		[self insertContiguousSpecifiers:@[[self savedSpecifiers][@"2"]] afterSpecifierID:@"1" animated:NO];
->>>>>>> 8f302c8d28aaac2ebd820063e0828c4563b51983
 	}
 	[self removeContiguousSpecifiers:@[[self savedSpecifiers][@"102"]] animated:NO];
 
@@ -146,11 +121,7 @@
         [[[[self navigationController] navigationController] navigationBar] setTintColor:nil];
     }];
 
-<<<<<<< HEAD
 }
-=======
-}  
->>>>>>> 8f302c8d28aaac2ebd820063e0828c4563b51983
 
 - (void)killInsta {
 
@@ -170,7 +141,13 @@
 
 - (void)github {
 	
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/YulkyTulky/InstaNotAStalker"]];
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/YulkyTulky/InstaNotAStalker"] options:@{} completionHandler:nil];
+
+}
+
+- (void)discord {
+	
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://discord.gg/gbzhzV"] options:@{} completionHandler:nil];
 
 }
 

@@ -3,8 +3,7 @@ Name: InstaNotAStalker
 Depends: mobilesubstrate
 Version: 1.1
 Architecture: iphoneos-arm
-Description: Confirm Instagram likes with a slew of preferences!
+Description: Confirm Instagram likes and/or follows with a slew of preferences!
 Maintainer: YulkyTulky
 Author: YulkyTulky
 Section: Tweaks
-Depiction: https://YulkyTulky.github.io/TweakRepo/depictions/?p=com.yulkytulky.instanotastalker

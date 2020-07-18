@@ -234,6 +234,16 @@
 			<key>label</key>
 			<string>Source Code  ❤️</string>
 		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>action</key>
+			<string>discord</string>
+			<key>icon</key>
+			<string>discord.png</string>
+			<key>label</key>
+			<string>Discord Server</string>
+		</dict>
 
 	</array>
 	<key>title</key>
