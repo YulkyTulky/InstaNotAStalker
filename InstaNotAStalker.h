@@ -32,8 +32,14 @@ int timeMultiplier;
 @property BOOL hasLiked;
 @end
 
+@interface IGFeedPhotoView: UIView
+@end
+
 @interface IGFeedItemPhotoCell: UIView
 - (IGFeedItem *)mediaCellFeedItem;
+@end
+
+@interface IGFeedItemVideoView: UIView
 @end
 
 @interface IGFeedItemVideoCell: UIView

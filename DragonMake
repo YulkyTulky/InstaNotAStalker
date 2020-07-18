@@ -1,6 +1,6 @@
 ---
 name: InstaNotAStalker
-icmd: killall -9 backboardd
+icmd: killall -9 Instagram Preferences
 
 all:
   archs:
@@ -16,8 +16,6 @@ InstaNotAStalker:
 InstaNotAStalkerPreferences:
     dir: InstaNotAStalkerPreferences
     type: prefs
-    include:
-        - /opt/theos/include/NSTask.h
     objc_files:
         - NASRootListController.m
         - NASRootHeaderView.m

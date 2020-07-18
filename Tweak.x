@@ -1,13 +1,15 @@
 #import "InstaNotAStalker.h"
+#import <RemoteLog.h>
 
-%hook IGFeedItemPhotoCell
+%hook IGFeedPhotoView
 
-- (void)feedPhotoDidDoubleTapToLike:(id)arg1 locationInfo:(id)arg2 {
-
-	NSString *username = [[[self mediaCellFeedItem] user] username];
+- (void)_onDoubleTap:(id)arg1 {
+	
+	IGFeedItemPhotoCell *cell = (IGFeedItemPhotoCell *)[[self superview] superview];
+	NSString *username = [[[cell mediaCellFeedItem] user] username];
 	NSString *title = [NSString stringWithFormat:@"Like %@'s Post?", username];
 	NSDate *now = [NSDate date];
-	NSDate *takenAtDate = [[[self mediaCellFeedItem] takenAtDate] date];
+	NSDate *takenAtDate = [[[cell mediaCellFeedItem] takenAtDate] date];
 
 	if (([now timeIntervalSinceDate:takenAtDate] > minimumTakenAtTime || alwaysAlert) && doubleTapModeEnabled) {
 
@@ -29,63 +31,7 @@
 
 %end
 
-%hook IGFeedItemVideoCell
 
-- (void)didDoubleTapFeedItemVideoView:(id)arg1 {
-
-	NSString *username = [[[self mediaCellFeedItem] user] username];
-	NSString *title = [NSString stringWithFormat:@"Like %@'s Post?", username];
-	NSDate *now = [NSDate date];
-	NSDate *takenAtDate = [[[self mediaCellFeedItem] takenAtDate] date];
-
-	if (([now timeIntervalSinceDate:takenAtDate] > minimumTakenAtTime || alwaysAlert) && doubleTapModeEnabled) {
-
-		UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:alertStyle];
-		UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {%orig;}]; // Like video
-		UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDestructive handler:nil]; // Do not like video
-		[alert addAction:yesAction];
-		[alert addAction:noAction];
-
-		[[self viewController] presentViewController:alert animated:YES completion:nil];
-
-	} else {
-
-		%orig;
-
-	}
-
-}
-
-%end
-
-%hook IGFeedItemPageCell
-
-- (void)pageMediaViewDidDoubleTap:(id)arg1 {
-
-	NSString *username = [[[self mediaCellFeedItem] user] username];
-	NSString *title = [NSString stringWithFormat:@"Like %@'s Post?", username];
-	NSDate *now = [NSDate date];
-	NSDate *takenAtDate = [[[self mediaCellFeedItem] takenAtDate] date];
-
-	if (([now timeIntervalSinceDate:takenAtDate] > minimumTakenAtTime || alwaysAlert) && doubleTapModeEnabled) {
-
-		UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:alertStyle];
-		UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {%orig;}]; // Like carousel
-		UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDestructive handler:nil]; // Do not like carousel
-		[alert addAction:yesAction];
-		[alert addAction:noAction];
-
-		[[self viewController] presentViewController:alert animated:YES completion:nil];
-
-	} else {
-
-		%orig;
-
-	}
-
-}
-
-%end
 
 %hook IGFeedItemUFICell
 
@@ -168,16 +114,9 @@ static void loadPrefs() {
 
 }
 
-static id observer;
-void removeObserver() {
-
-	if (observer) {
-		[[NSNotificationCenter defaultCenter] removeObserver:observer];
-		observer = nil;
-	}
-}
-
 %ctor {
+
+	RLog(@"ctor");
 
 	// DEVELOPER'S NOTE: Hooking IGFeedItem did not work as the like would "half-happen" by then and crash Instagram
 
@@ -185,19 +124,7 @@ void removeObserver() {
 	CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)loadPrefs, CFSTR("com.yulkytulky.instanotastalker/saved"), NULL, CFNotificationSuspensionBehaviorCoalesce); // Listen for preference changes
 
 	if (enabled) {
-		NSBundle *bundle = [NSBundle bundleWithPath:[NSString stringWithFormat:@"%@%@", [[NSBundle mainBundle] bundlePath], @"/Frameworks/InstagramAppCoreFramework.framework"]];
-		observer = [[NSNotificationCenter defaultCenter] addObserverForName:NSBundleDidLoadNotification object:bundle queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification) {
 			%init;
-			removeObserver();
-		}];
-
-		[bundle load];
 	}
-
-}
-
-%dtor {
-
-	removeObserver();
 
 }
